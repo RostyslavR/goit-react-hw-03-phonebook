@@ -1,10 +1,12 @@
-// import contacts from 'data/contacts.json';
+import initContacts from 'data/contacts.json';
 import { nanoid } from 'nanoid';
 import { Component } from 'react';
 import { Container } from 'components/App/App.styled';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Filter } from 'components/Filter/Filter';
 import { List } from 'components/List/List';
+import { ModalWindow } from 'common/ModalWindow/ModalWindow';
+import { FlexBox } from 'common/FlexBox/FlexBox';
 
 const PB_KEY = 'phoneBook';
 
@@ -12,14 +14,14 @@ export class App extends Component {
   state = {
     contacts: [],
     filter: '',
+    modalIsOpen: false,
   };
 
   componentDidMount() {
-    const contacts = JSON.parse(localStorage.getItem(PB_KEY));
-    if (contacts) {
-      this.setState({ contacts });
-      console.log(contacts);
-    }
+    const savedContacts = localStorage.getItem(PB_KEY);
+    savedContacts !== null
+      ? this.setState({ contacts: JSON.parse(savedContacts) })
+      : this.setState({ contacts: initContacts });
   }
 
   componentDidUpdate(_, prevState) {
@@ -30,6 +32,16 @@ export class App extends Component {
       localStorage.setItem(PB_KEY, JSON.stringify(currentContacts));
     }
   }
+
+  toggleModal = () => {
+    this.setState(prevState => ({
+      modalIsOpen: !prevState.modalIsOpen,
+    }));
+  };
+
+  handleFilter = evt => {
+    this.setState({ filter: evt.currentTarget.value.toLowerCase() });
+  };
 
   handleAdd = ({ name, phone }, { resetForm }) => {
     const id = nanoid();
@@ -46,12 +58,7 @@ export class App extends Component {
         contacts: [...prevState.contacts, { id, name, phone }],
       }));
     }
-
     resetForm();
-  };
-
-  handleFilter = evt => {
-    this.setState({ filter: evt.currentTarget.value.toLowerCase() });
   };
 
   handleDelete = currentContact => {
@@ -70,8 +77,19 @@ export class App extends Component {
     return (
       <Container>
         <h1>Phone book</h1>
-        <Filter filter={this.state.filter} handleFilter={this.handleFilter} />
-        <ContactForm handleAdd={this.handleAdd} />
+        <FlexBox>
+          <Filter filter={this.state.filter} handleFilter={this.handleFilter} />
+          <button
+            type="button"
+            aria-label="contactform"
+            onClick={this.toggleModal}
+          >
+            Add
+          </button>
+        </FlexBox>
+        <ModalWindow isOpen={this.state.modalIsOpen} onClose={this.toggleModal}>
+          <ContactForm handleAdd={this.handleAdd} />
+        </ModalWindow>
         <List contacts={filteredContacts} handleDelete={this.handleDelete} />
       </Container>
     );

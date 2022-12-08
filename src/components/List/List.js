@@ -9,7 +9,11 @@ export const List = ({ contacts, handleDelete }) => {
         <Item key={id}>
           {name}
           <span> {phone}</span>
-          <button type="button" onClick={() => handleDelete(id)}>
+          <button
+            type="button"
+            aria-label="delete contact"
+            onClick={() => handleDelete(id)}
+          >
             Delete
           </button>
         </Item>
