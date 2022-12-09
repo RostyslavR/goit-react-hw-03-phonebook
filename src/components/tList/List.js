@@ -5,18 +5,10 @@ import { ContactList } from './List.styled';
 export const List = ({ contacts, handleDelete }) => {
   return (
     <ContactList>
-      {contacts.map(({ id, name, phone }) => (
-        <Item key={id}>
-          {name}
-          <span> {phone}</span>
-          <button
-            type="button"
-            aria-label="delete contact"
-            onClick={() => handleDelete(id)}
-          >
-            Delete
-          </button>
-        </Item>
+      {contacts.map(({ id, ...other }) => (
+        <li key={id}>
+          <Item {...other} onDelete={() => handleDelete(id)} />
+        </li>
       ))}
     </ContactList>
   );

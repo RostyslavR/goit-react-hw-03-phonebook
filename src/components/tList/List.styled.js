@@ -7,9 +7,9 @@ export const ContactList = styled.ul`
   overflow-y: auto;
 `;
 
-export const ContactItem = styled.li`
+export const ContactItem = styled.div`
   display: flex;
-  gap: 20px;
-  padding: 10px;
+  /* gap: 20px; */
+  padding: 5px;
   justify-content: space-between;
 `;
