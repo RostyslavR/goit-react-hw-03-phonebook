@@ -4,6 +4,7 @@ import { Input, Label } from './FilterStyled.styled';
 export const Filter = ({ filter, handleFilter }) => {
   return (
     <Label>
+      Find contact by name
       <Input
         type="text"
         name="filter"

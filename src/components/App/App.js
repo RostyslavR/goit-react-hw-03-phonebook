@@ -5,8 +5,6 @@ import { Container } from 'components/App/App.styled';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Filter } from 'components/Filter/Filter';
 import { List } from 'components/List/List';
-import { ModalWindow } from 'common/ModalWindow/ModalWindow';
-import { FlexBox } from 'common/FlexBox/FlexBox';
 
 const PB_KEY = 'phoneBook';
 
@@ -14,7 +12,6 @@ export class App extends Component {
   state = {
     contacts: [],
     filter: '',
-    modalIsOpen: false,
   };
 
   componentDidMount() {
@@ -32,12 +29,6 @@ export class App extends Component {
       localStorage.setItem(PB_KEY, JSON.stringify(currentContacts));
     }
   }
-
-  toggleModal = () => {
-    this.setState(prevState => ({
-      modalIsOpen: !prevState.modalIsOpen,
-    }));
-  };
 
   handleFilter = evt => {
     this.setState({ filter: evt.currentTarget.value.toLowerCase() });
@@ -77,19 +68,8 @@ export class App extends Component {
     return (
       <Container>
         <h1>Phone book</h1>
-        <FlexBox>
-          <Filter filter={this.state.filter} handleFilter={this.handleFilter} />
-          <button
-            type="button"
-            aria-label="contactform"
-            onClick={this.toggleModal}
-          >
-            Add
-          </button>
-        </FlexBox>
-        <ModalWindow isOpen={this.state.modalIsOpen} onClose={this.toggleModal}>
-          <ContactForm handleAdd={this.handleAdd} />
-        </ModalWindow>
+        <ContactForm handleAdd={this.handleAdd} />
+        <Filter filter={this.state.filter} handleFilter={this.handleFilter} />
         <List contacts={filteredContacts} handleDelete={this.handleDelete} />
       </Container>
     );
