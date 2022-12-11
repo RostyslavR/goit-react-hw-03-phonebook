@@ -1,10 +1,10 @@
-import { ContactItem } from './List.styled';
+import { ContactItem, Paragraf } from './List.styled';
 
 export const Item = ({ name, phone, onDelete }) => {
   return (
     <ContactItem>
-      <span>{name}</span>
-      <span> {phone}</span>
+      <Paragraf>{name}</Paragraf>
+      <Paragraf>{phone}</Paragraf>
       <button type="button" aria-label="delete contact" onClick={onDelete}>
         Delete
       </button>

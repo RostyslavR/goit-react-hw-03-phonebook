@@ -4,7 +4,7 @@ import { Component } from 'react';
 import { Container } from 'components/App/App.styled';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Filter } from 'components/Filter/Filter';
-import { List } from 'components/tList/List';
+import { List } from 'components/List/List';
 import { ModalWindow } from 'common/ModalWindow/ModalWindow';
 import { FlexBox } from 'common/FlexBox/FlexBox';
 

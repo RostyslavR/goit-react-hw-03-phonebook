@@ -8,7 +8,6 @@ export const Container = styled.div`
   color: ${p => p.theme.colors.text};
   background-color: ${p => p.theme.colors.background};
 
-  p,
   h2 {
     font-size: 36px;
   }

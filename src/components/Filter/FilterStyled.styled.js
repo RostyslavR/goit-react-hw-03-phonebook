@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
 export const Label = styled.label`
-  display: block;
-  padding: 10px;
+  width: 100%;
+  text-align: start;
+`;
+
+export const Input = styled.input`
+  width: 90%;
+  font-size: 20px;
 `;

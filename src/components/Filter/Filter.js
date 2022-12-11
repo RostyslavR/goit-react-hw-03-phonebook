@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
-import { Label } from './FilterStyled.styled';
+import { Input, Label } from './FilterStyled.styled';
 
 export const Filter = ({ filter, handleFilter }) => {
   return (
     <Label>
-      Find
-      <input
+      <Input
         type="text"
         name="filter"
         value={filter}

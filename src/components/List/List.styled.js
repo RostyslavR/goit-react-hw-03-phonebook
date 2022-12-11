@@ -10,6 +10,12 @@ export const ContactList = styled.ul`
 export const ContactItem = styled.div`
   display: flex;
   /* gap: 20px; */
-  padding: 5px;
+  padding: 4px;
   justify-content: space-between;
+`;
+
+export const Paragraf = styled.p`
+  text-align: start;
+  width: 150px;
+  font-size: 20px;
 `;

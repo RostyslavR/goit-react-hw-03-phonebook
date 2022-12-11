@@ -1,4 +1,4 @@
-import { Form } from 'formik';
+import { Field, Form } from 'formik';
 import styled from 'styled-components';
 
 export const FormStyled = styled(Form)`
@@ -9,4 +9,12 @@ export const FormStyled = styled(Form)`
   width: 350px;
   margin: 0 auto 10px;
   border: dashed gray;
+`;
+
+export const Input = styled(Field)`
+  width: 100%;
+`;
+
+export const Label = styled.label`
+  width: 100%;
 `;

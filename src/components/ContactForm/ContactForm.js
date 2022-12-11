@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Formik, Field, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { FormStyled } from './FormStyled.styled';
+import { FormStyled, Input, Label } from './FormStyled.styled';
 
 const initialValues = {
   name: '',
@@ -24,16 +24,16 @@ export const ContactForm = ({ handleAdd }) => {
       onSubmit={handleAdd}
     >
       <FormStyled>
-        <label>
+        <Label>
           Name
-          <Field type="text" name="name" required placeholder="Enter name" />
+          <Input type="text" name="name" required placeholder="Enter name" />
           <ErrorMessage name="name" component="div" />
-        </label>
-        <label>
+        </Label>
+        <Label>
           Phone
-          <Field type="tel" name="phone" required placeholder="Enter phone" />
+          <Input type="tel" name="phone" required placeholder="Enter phone" />
           <ErrorMessage name="phone" component="div" />
-        </label>
+        </Label>
         <button type="submit">Add contact</button>
       </FormStyled>
     </Formik>
